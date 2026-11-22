@@ -19,8 +19,7 @@ if(!o)F(0);
 else if(o==23||o==27)S[s-1]=o<24?-S[s-1]:~S[s-1];
 else if(o>15&&o<35){b=S[s-1],a=S[s-2],m=a>>>0,u=b>>>0;
 if(o>18&&o<23&&!b)F(4);
-let r=[a+b,a-b,Math.imul(a,b),a/b,a%b,m/u,m%u,0,a&b,a|b,a^b,0,a<<b,a>>b,a>>>b,0,a==b|0,a<b|0,m<u|0][o-16];
-s-=2;S[s++]=r;}
+S[s-2]=[a+b,a-b,Math.imul(a,b),a/b,a%b,m/u,m%u,0,a&b,a|b,a^b,0,a<<b,a>>b,a>>>b,0,a==b|0,a<b|0,m<u|0][o-16],s--;}
 else if(o==1)S[s++]=p[y-1]<<24>>24;
 else if(o==2)S[s++]=p[y-4]|p[y-3]<<8|p[y-2]<<16|p[y-1]<<24;
 else if(o==3)s--;
@@ -31,8 +30,8 @@ else if(o>47&&o<51)a=(p[y-2]|p[y-1]<<8)<<16>>16,o==48||S[--s]==0==(o<50)?x=y+a:0
 else if(o==51)k==64?F(7):(K[k++]=y,x=p[y-2]|p[y-1]<<8);
 else if(o==52)k?x=K[--k]:F(8);
 else if(o>63&&o<66)a=S[s-1],a>>>8?F(6):o==64?S[s-1]=M[a]:(s-=2,M[a]=S[s]);
-else if(o==80)g=""+S[s-1],L+g.length>65536?F(11):(L+=O.write(g,L),s--);
-else if(o==81)L>65535?F(11):O[L++]=S[--s]&255;
+else if(o==80)g=""+S[--s],L+g.length>65536?F(11):L+=O.write(g,L);
+else if(o==81)L>65535?F(11):O[L++]=S[--s];
 else if(o==82)S[s++]=i<q.length?q[i++]:-1;
 else F(S[--s]&255);
 }}catch(r){return r}
